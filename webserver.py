@@ -1,9 +1,9 @@
-from socket import *
-import sys
+from socket import *    # Mengimport modul socket
+import sys              # Mengimport sys yang berguna untuk menghentikan program
 import os
 
 # Membuat TCP socket
-serverSocket = socket(AF_INET, SOCK_STREAM)
+serverSocket = socket(AF_INET, SOCK_STREAM)     # Membuat socet TCP dengan memanggil fungsi socket dan disimpan di variabel serverSocket
 serverPort = 8080  # Nomor port
 serverSocket.bind(('', serverPort))  # Mengikat port ke soket
 serverSocket.listen(1)  # Menunggu request
