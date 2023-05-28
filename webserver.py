@@ -7,7 +7,7 @@ serverSocket = socket(AF_INET, SOCK_STREAM)     # Membuat socet TCP dengan meman
 serverPort = 8080                               # Nomor port
 serverSocket.bind(('', serverPort))             # Mengikat port ke soket
 serverSocket.listen(1)                          # Menunggu request
-print("Ready to serve . . .")
+print("Ready to serve . . .")                   # Mencetak pesan "Ready to serve . . ."
 
 # Dictionary mapping file extensions to content types
 content_types = {
