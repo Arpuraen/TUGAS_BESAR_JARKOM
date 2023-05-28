@@ -18,12 +18,12 @@ content_types = {
 while True:
     connectionSocket, addr = serverSocket.accept()  # Membuat soket koneksi dan menerima request
 
-    try:
+    try:        # Mencoba menjalankan code yang berguna untuk mencari dan mengambil file dari file system
         # Menerima message dan mencari file yang diminta
-        message = connectionSocket.recv(1024).decode()
-        filename = message.split()[1]
-        f = open(filename[1:], 'rb')  # Open file in binary mode for images
-        outputdata = f.read()
+        message = connectionSocket.recv(1024).decode() # Memasukkan paket ke yang sudah tiba kedalam variabel message dan mengkonversikan paketnya dari byte ke tipe data yang normal
+        filename = message.split()[1]                  # Memasukkan value dengan indeks ke 1 dari message yang sudah displit kedalam variabel filename
+        f = open(filename[1:], 'rb')                   # Open file in binary mode for images
+        outputdata = f.read()                          # Membaca konten dari file f ke variabel outputdata
 
         print("File found.")
         # Membuat header bahwa file telah ditemukan dan mengirim file
@@ -35,9 +35,9 @@ while True:
 
         # Memutuskan koneksi
         print("File sent.")
-        connectionSocket.close()
+        connectionSocket.close()        # Menutup koneksi soket connectionSocket
 
-    except IOError:
+    except IOError:     # Menjalankan code jika codingan pada blok try error (jika file tidak ditemukan)
         # Membuat header error
         error = "HTTP/1.1 404 Not Found\r\nContent-Type: text/html\r\n\r\n"
         response1 = error.encode()
@@ -50,8 +50,8 @@ while True:
 
         # Memutuskan koneksi
         print("Error message sent.")
-        connectionSocket.close()
+        connectionSocket.close()        # Menutup koneksi soket ConnectionSocket
 
 # Tutup aplikasi
-serverSocket.close()
-sys.exit()
+serverSocket.close()    # Menutup koneksi soket serverSocket
+sys.exit()              # Mengakhiri program dengan metode exit()
